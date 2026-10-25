@@ -1,0 +1,66 @@
+# Dokploy deployment stack — single domain, Dokploy-managed MongoDB.
+#
+# Differs from docker-compose.yml (local dev) in three ways:
+#   1. No mongo service — this connects to a Dokploy-managed MongoDB database
+#      instead (set MONGODB_URI below to its internal connection string).
+#   2. No published host ports — Dokploy's Traefik proxy reaches containers
+#      directly over the shared `dokploy-network`; only the `frontend`
+#      service gets a Domain attached in the Dokploy UI.
+#   3. All secrets/config come from ${VARS}, filled in via Dokploy's
+#      per-application "Environment" tab — never commit real values here.
+#
+# See DOKPLOY_DEPLOY.md for the full setup walkthrough.
+
+services:
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - JWT_SECRET=${JWT_SECRET}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - MONGODB_URI=${MONGODB_URI}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - VITE_GOOGLE_CLIENT_ID=${VITE_GOOGLE_CLIENT_ID}
+      - CLOUDINARY_CLOUD_NAME=${CLOUDINARY_CLOUD_NAME}
+      - CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
+      - CLOUDINARY_API_SECRET=${CLOUDINARY_API_SECRET}
+      - META_APP_ID=${META_APP_ID}
+      - META_APP_SECRET=${META_APP_SECRET}
+      - LINKEDIN_CLIENT_ID=${LINKEDIN_CLIENT_ID}
+      - LINKEDIN_CLIENT_SECRET=${LINKEDIN_CLIENT_SECRET}
+      - LINKEDIN_REDIRECT_URI=${LINKEDIN_REDIRECT_URI}
+      - YOUTUBE_CLIENT_ID=${YOUTUBE_CLIENT_ID}
+      - YOUTUBE_CLIENT_SECRET=${YOUTUBE_CLIENT_SECRET}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_USER=${EMAIL_USER}
+      - EMAIL_PASS=${EMAIL_PASS}
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - dokploy-network
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api
+        VITE_SOCKET_URL: ${FRONTEND_URL}
+        VITE_GOOGLE_CLIENT_ID: ${VITE_GOOGLE_CLIENT_ID}
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - dokploy-network
+
+volumes:
+  backend_uploads:
+
+networks:
+  dokploy-network:
+    external: true
