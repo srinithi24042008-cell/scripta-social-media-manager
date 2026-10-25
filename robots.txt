@@ -1,0 +1,14 @@
+# Scripta — robots.txt
+# Allow all well-behaved crawlers
+
+User-agent: *
+Allow: /
+Crawl-delay: 10
+
+# Block sensitive/internal backend paths
+Disallow: /api/
+Disallow: /uploads/
+
+# Sitemap location
+Sitemap: https://sm.coptercode.co.in/sitemap.xml
+

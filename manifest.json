@@ -1,0 +1,36 @@
+{
+  "id": "/",
+  "name": "Scripta — AI Social Media Management",
+  "short_name": "Scripta",
+  "description": "AI-powered social media management platform for scheduling, analytics, and team collaboration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait-primary",
+  "lang": "en",
+  "categories": [
+    "business",
+    "productivity",
+    "social"
+  ],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "icons": [
+    {
+      "src": "/logo.png",
+      "type": "image/png",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Scripta Dashboard — AI Social Media Management"
+    }
+  ]
+}

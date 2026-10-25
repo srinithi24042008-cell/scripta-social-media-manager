@@ -1,0 +1,29 @@
+# Scripta
+
+> Scripta is an AI-powered social media management platform that helps individuals and teams plan, write, design, and schedule content across Instagram, Facebook, LinkedIn, and YouTube.
+
+Scripta combines AI content generation with multi-platform scheduling, real-time analytics, team collaboration workflows, and brand voice management — all from a single dashboard.
+
+## Core Features
+
+- **AI Studio**: Generate captions, hashtags, images, audio, and full campaign packages from a single prompt using Google Gemini AI.
+- **Post Scheduler**: Plan and publish posts across Instagram, Facebook, LinkedIn, and YouTube with a visual content calendar.
+- **Analytics Dashboard**: Track reach, engagement, follower growth, and link clicks across all connected platforms in real-time.
+- **Team Collaboration**: Create organizations, invite team members, assign roles, and implement post approval workflows.
+- **Brand Voice Management**: Define and maintain a consistent brand voice and tone across all AI-generated content.
+- **Multi-Platform Publishing**: Connect and publish to Instagram, Facebook, LinkedIn, YouTube, and Threads from one place.
+
+## Product
+
+- [Home](https://sm.coptercode.co.in/): Landing page with feature overview and getting started options.
+- [Privacy Policy](https://sm.coptercode.co.in/privacy): Data privacy and usage policy.
+- [Terms of Service](https://sm.coptercode.co.in/terms): Terms and conditions of use.
+- [Data Deletion](https://sm.coptercode.co.in/data-deletion): Instructions for requesting data deletion.
+
+## Technical
+
+- Frontend: React (Vite) single-page application with Tailwind CSS.
+- Backend: Node.js/Express REST API with MongoDB.
+- AI Provider: Google Gemini (generative text, image, and audio).
+- Authentication: JWT-based auth with Google OAuth support.
+- Deployment: Docker containers served via Nginx reverse proxy.
